@@ -4,17 +4,16 @@ class Solution(object):
 
         if sum(remain)>=0:
             for i in range(len(gas)):
-                goon = True
                 gas_reorder = gas[i:]+gas[:i]
                 cost_reorder = cost[i:]+cost[:i]
                 leftgas = 0
-                j = 0
-                while goon:
+                for j in range(len(gas)):
                     leftgas = leftgas + gas_reorder[j]-cost_reorder[j]
-                    if j+1<len(gas) and leftgas >=0:
-                        j+=1
-                    else:
+                    if leftgas <0:
                         goon = False
+                        break
+                    else:
+                        goon = True
                 if goon:
                     return i
             if not goon:

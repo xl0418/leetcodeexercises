@@ -11,11 +11,10 @@ class Solution:
             return root[0]
         else:
             node_index = root.index(node) +1
-            done = True
             i = 0
             while not ((node_index > 2 ** i - 1) and (node_index <= 2 ** (i + 1) - 1)):
                 i += 1
-            motherindex = round((node_index-2**i+1)/2)  -1
+            motherindex = (node_index-2**i+1)//2+((node_index-2**i+1)%2>0)  -1
             mothernodeval = root[2**(i-1)-1+motherindex]
 
             return mothernodeval
@@ -33,8 +32,8 @@ class Solution:
 
 
 root = [6,2,8,0,4,7,9,None,None,3,5]
-p = 7
-q = 5
+p = 0
+q = 3
 
 test = Solution()
 test.lowestCommonAncestor(root,p,q)

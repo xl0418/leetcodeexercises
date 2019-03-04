@@ -13,18 +13,12 @@ class Solution:
             node_index = root.index(node) +1
             done = True
             i = 0
-            while done:
-                node_index = node_index - 2**i
-                if node_index <=0:
-                    done = False
-                    motherindex = (node_index+2**i+1) // 2
-                else:
-                    i += 1
-            mothernodeval = root[int(2**(i-2)) + motherindex-1]
+            while not ((node_index > 2 ** i - 1) and (node_index <= 2 ** (i + 1) - 1)):
+                i += 1
+            motherindex = round((node_index-2**i+1)/2)  -1
+            mothernodeval = root[2**(i-1)-1+motherindex]
+
             return mothernodeval
-
-
-
 
     def lowestCommonAncestor(self, root, p, q):
         pmother_list = [p]
@@ -39,8 +33,8 @@ class Solution:
 
 
 root = [6,2,8,0,4,7,9,None,None,3,5]
-p = 0
-q = 9
+p = 7
+q = 5
 
 test = Solution()
 test.lowestCommonAncestor(root,p,q)
